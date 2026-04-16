@@ -1,8 +1,8 @@
-# surf7c — Gel-Surface Topography Reconstruction from Confocal Z-Stacks
+# Gel-Surface Topography Reconstruction from Confocal Z-Stacks
 
 This script reconstructs the 3D surface topography of gel samples (or similar soft materials) from fluorescence confocal microscopy z-stacks. It was built to handle a common problem in microscopy: figuring out exactly where the surface is when your signal is noisy and your z-resolution is limited.
 
-Instead of relying on a single approach and hoping for the best, `surf7c.py` runs two independent surface-finding methods, scores how trustworthy each one is at every pixel, and blends them together. The result is a height map that's detailed where the signal is strong and smooth where it isn't.
+Instead of relying on a single approach and hoping for the best, `integrated_analysis.py` runs two independent surface-finding methods, scores how trustworthy each one is at every pixel, and blends them together. The result is a height map that's detailed where the signal is strong and smooth where it isn't.
 
 ---
 
@@ -90,7 +90,7 @@ pip install numpy scipy matplotlib tifffile scikit-image
 4. Run it:
 
 ```bash
-python surf7c.py
+python integrated_analysis.py
 ```
 
 The script will print progress to the console and save a `_integrated_surface.tif` file next to your input stack.
@@ -135,9 +135,3 @@ The sigmoid function makes this a soft decision rather than a hard cutoff, so yo
 - For very large stacks, increasing `bin_factor` to 2 or 4 can significantly speed things up at the cost of lateral resolution.
 - The `z_upsample` parameter has diminishing returns past ~20. The original paper uses 100, but 20 is usually good enough and much faster.
 - If your surface has features smaller than ~20 pixels across, consider reducing `patch_size` or increasing `patch_overlap` so the spline method can resolve them (though the argmax will likely handle them anyway if the SNR is decent).
-
----
-
-## License
-
-This project is provided as-is for academic and research use.
