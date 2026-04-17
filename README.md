@@ -77,7 +77,7 @@ pip install numpy scipy matplotlib tifffile scikit-image
 
 ## Usage
 
-1. Open `surf7c.py` and set the `filename` variable to point at your `.tif` z-stack.
+1. Open `integrated_analysis.py` and set the `filename` variable to point at your `.tif` z-stack.
 2. Adjust the physical parameters to match your microscope setup:
    - `nmppx` — nanometers per pixel in X/Y
    - `umPslice` — microns per z-slice
